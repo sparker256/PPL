@@ -19,11 +19,13 @@ endif()
 if(UNIX)
     set(PLATFORM_COMPILE_OPTIONS -Wall -Wextra -Wfloat-equal -pedantic)
 else()
-    set(PLATFORM_COMPILE_OPTIONS /W3 /wd4996)
+#   set(PLATFORM_COMPILE_OPTIONS /W3 /wd4996)
+    set(PLATFORM_COMPILE_OPTIONS -Wall -Wextra -Wfloat-equal -pedantic)
 endif()
 
 if(APPLE)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.12)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11)
+#    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.12)
     set(PLATFORM_CORE_DEFINITIONS
         APL=1
         LIN=0
@@ -64,9 +66,10 @@ set(DEFINITIONS
     XPLM301=1
     ${PLATFORM_CORE_DEFINITIONS})
 
-include_directories(${CMAKE_SOURCE_DIR}/../SDK/CHeaders/XPLM
-                    ${CMAKE_SOURCE_DIR}/../SDK/CHeaders/Widgets
+include_directories(${CMAKE_SOURCE_DIR}/include/SDK/CHeaders/XPLM
+                    ${CMAKE_SOURCE_DIR}/include/SDK/CHeaders/Widgets
                     ${CMAKE_SOURCE_DIR}/include/simpleini
+                    ${CMAKE_SOURCE_DIR}/include/freetype2/include
                     ${PLATFORM_INCLUDE_DIRECTORIES})
 
 

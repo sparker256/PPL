@@ -33,9 +33,9 @@
 #include "XPLMGraphics.h"
 
 #if IBM
-#include <Windows.h>
-#include <gl\gl.h>
-#include <gl\glu.h>
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #elif LIN
 #include <GL/gl.h>
 #include <GL/glu.h>

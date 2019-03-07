@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# How to run
+#
+# This is the path to my install and how I build
+# Modify this to match your install
+#
+# ./xp11_PPL_plugin_builder/PPL/build_PPL_lin_win_mac_OnLinux
+#
+
+cd /home/bill/xp11_PPL_plugin_builder/PPL &&
+mkdir -p release/PPL/lin &&
+mkdir -p release/PPL/win &&
+mkdir -p release/PPL/mac &&
+
+rm -r build/*
+cd build
+cmake ..
+make VERBOSE=1
+cd /home/bill/xp11_PPL_plugin_builder/PPL
+cp build/libPPL.a release/PPL/lin/
+
+rm -r build/*
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=~/xp11_PPL_plugin_builder/PPL/Toolchain-mingw-w64-x86-64.cmake ..
+make VERBOSE=1
+cd /home/bill/xp11_PPL_plugin_builder/PPL
+cp build/libPPL.a release/PPL/win/
+
+rm -r build/*
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=~/xp11_PPL_plugin_builder/PPL/Toolchain-ubuntu-osxcross-10.11.cmake ..
+make VERBOSE=1
+cd /home/bill/xp11_PPL_plugin_builder/PPL
+cp build/libPPL.a release/PPL/mac/
+
+exec $SHELL
+#
+
